@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class InMemoryBrandRepository implements BrandRepository {
-
+// Test
     private List<Brand> brands;
 
     public InMemoryBrandRepository() {
