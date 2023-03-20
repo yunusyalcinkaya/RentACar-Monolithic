@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class InMemoryBrandRepository implements BrandRepository {
-    private List<Brand> brands;
+    private final List<Brand> brands;
 
     public InMemoryBrandRepository() {
         brands = new ArrayList<>();
@@ -21,6 +21,51 @@ public class InMemoryBrandRepository implements BrandRepository {
 
     @Override
     public List<Brand> getAll() {
+        System.out.println("------------ head of brand list -------------");
+        for (Brand brand : brands) {
+            System.out.println(brand);
+        }
+        System.out.println("------------ end of brand list -------------");
         return brands;
+    }
+
+    @Override
+    public Brand add(Brand brand) {
+        brands.add(brand);
+        System.out.println("Brand added: " + brand);
+        return brand;
+    }
+
+    @Override
+    public Brand update(int id, Brand brand) {
+        for (Brand b : brands) {
+            if (b.getId() == id){
+                b.setId(brand.getId());
+                b.setName(brand.getName());
+                System.out.println("brand "+id + " updated. New brand: " + brand);
+            }
+        }
+        return brand;
+    }
+
+    @Override
+    public void delete(int id) {
+        for (Brand brand : brands) {
+            if(brand.getId() == id){
+                brands.remove(brand);
+                System.out.println("Brand deleted: " + brand);
+            }
+        }
+    }
+
+    @Override
+    public Brand getById(int id) {
+        for (Brand brand : brands) {
+            if (brand.getId() == id) {
+                System.out.println("Get product by id: " + brand);
+                return brand;
+            }
+        }
+        return null;
     }
 }

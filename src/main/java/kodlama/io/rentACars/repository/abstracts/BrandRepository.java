@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface BrandRepository {
     List<Brand> getAll(); // list of brand
+    Brand getById(int id);
+    Brand add(Brand brand);
+    Brand update(int id, Brand brand);
+    void delete(int id);
 }

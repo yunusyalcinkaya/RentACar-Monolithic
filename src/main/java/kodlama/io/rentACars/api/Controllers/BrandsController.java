@@ -2,18 +2,15 @@ package kodlama.io.rentACars.api.Controllers;
 
 import kodlama.io.rentACars.business.abstracts.BrandService;
 import kodlama.io.rentACars.entities.concretes.Brand;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/brands")// localhost:8080/brands
+@RequestMapping("/api/brands")// localhost:8080/brands
 public class BrandsController {
 
-    private BrandService service;
+    private final BrandService service;
 
 
     public BrandsController(BrandService service) {
@@ -24,5 +21,25 @@ public class BrandsController {
     public List<Brand> findAll(){
         return service.getAll();
 
+    }
+
+    @PutMapping("/update/{id}")
+    public Brand update(@PathVariable int id, @RequestBody Brand brand){
+        return service.update(id,brand);
+    }
+
+    @PutMapping("/add")
+    public Brand add(@RequestBody Brand brand){
+        return service.add(brand);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable int id){
+        service.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    public Brand getById(@PathVariable int id){
+        return service.getById(id);
     }
 }
