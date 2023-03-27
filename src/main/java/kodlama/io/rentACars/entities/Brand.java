@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
+// her markanın 1 veya daha fazla modeli olabilir
 //lombok
 @Entity
 @AllArgsConstructor // bizim yerimize full argümanlı constructor oluşturur
@@ -20,4 +23,7 @@ public class Brand { //marka
     @Column(name = "id") // -> sütunları bu şekilde istediğimiz isimde tablolarda tutabiliriz. yazmasak da default olarak değişken isminde tutar
     private int id;
     private String name;// isimlendirmeleri brandname, brandId gibi yapma!!!
+
+    @OneToMany(mappedBy = "brand") // foreach gibi düşün, herbir modeli brand ile eşleştiriyor
+    private List<Model> models;
 }
