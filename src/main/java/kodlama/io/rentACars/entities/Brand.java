@@ -9,9 +9,9 @@ import lombok.Setter;
 import java.util.List;
 
 // her markanın 1 veya daha fazla modeli olabilir
-//lombok
+//bu anotasyonlar "lombok" eklentisi sayesinde kullanılıyo
 @Entity
-@AllArgsConstructor // bizim yerimize full argümanlı constructor oluşturur
+@AllArgsConstructor // bizim yerimize full parametreli constructor oluşturur
 @NoArgsConstructor // parametresiz constructor oluşturur
 @Getter
 @Setter // bunların hepsi lombok sayesinde yapılıyor

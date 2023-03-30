@@ -1,4 +1,4 @@
-package kodlama.io.rentACars.api.Controllers;
+package kodlama.io.rentACars.api.controllers;
 
 import kodlama.io.rentACars.business.abstracts.BrandService;
 import kodlama.io.rentACars.business.dto.requests.create.CreateBrandRequest;

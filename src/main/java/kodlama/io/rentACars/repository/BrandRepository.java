@@ -3,9 +3,10 @@ package kodlama.io.rentACars.repository;
 import kodlama.io.rentACars.entities.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
+//repository = dataAccess = dao
 public interface BrandRepository extends JpaRepository<Brand,Integer> {
-    // JPARepo -> crud metodlarını içeriyor
-    // Cusrom queries yazacağız
+    // JPARepo -> crud metodlarını içeriyor. Jpa kullanmasaydık entity nesneleri üzerindeki crud işlemlerinii
+    // kendimiz yazacaktık. (add(),update(),list(),delete() gibi metodları)
+    // Custom queries yazacağız
 
 }

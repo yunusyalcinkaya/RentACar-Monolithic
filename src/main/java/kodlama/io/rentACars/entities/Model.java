@@ -23,7 +23,7 @@ public class Model {
 
     @ManyToOne // bir modelin bir markası olabilir, bir markanın birden çok modeli olabilir
     @JoinColumn(name = "brand_id")
-    private Brand brand; // mappedBy da kullanılır
+    private Brand brand; // aynı isim mappedBy da kullanılır
 
     @OneToMany(mappedBy = "model")
     private List<Car> cars;

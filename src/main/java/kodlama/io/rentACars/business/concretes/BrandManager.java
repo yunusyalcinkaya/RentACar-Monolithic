@@ -8,6 +8,7 @@ import kodlama.io.rentACars.business.dto.responses.get.GetBrandResponse;
 import kodlama.io.rentACars.entities.Brand;
 import kodlama.io.rentACars.repository.BrandRepository;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,15 +18,15 @@ import java.util.List;
 @AllArgsConstructor
 public class BrandManager  implements BrandService {
     private final BrandRepository repository;
+    private final ModelMapper mapper;
 
     @Override
     public List<GetAllBrandsResponse> getAll() {
         List<Brand> brands = repository.findAll();
-        List<GetAllBrandsResponse> response = new ArrayList<>();
-
-        for (Brand brand : brands) {
-            response.add(new GetAllBrandsResponse(brand.getId(), brand.getName()));
-        }
+        List<GetAllBrandsResponse> response =
+                brands.stream().map(brand -> mapper.map(brand, GetAllBrandsResponse.class)).toList();
+        //toList teker teker aldığı brandleri bir listeye dönüştürür, liste dönmemiz lazım
+        //stream kullanmamızın amacı bir listenin içinde dolanmamız lazım
         return response;
     }
 
@@ -33,23 +34,18 @@ public class BrandManager  implements BrandService {
     public GetBrandResponse getById(int id) {
        checkIfBrandExists(id);
        Brand brand = repository.findById(id).orElseThrow();
-       GetBrandResponse response = new GetBrandResponse();
-       response.setId(brand.getId());
-       response.setName(brand.getName());
+       GetBrandResponse response = mapper.map(brand,GetBrandResponse.class);
 
        return response;
     }
 
     @Override
     public CreateBrandResponse add(CreateBrandRequest request) {
-        Brand brand = new Brand();
-        brand.setName(request.getName());
-        repository.save(brand); // buraya kadar CreateBrandRequest -> Brand dönüşümü yaptık, veritabanı tablosu Brand tiipinde
-
-        CreateBrandResponse response = new CreateBrandResponse();
-        response.setId(brand.getId());
-        response.setName(brand.getName()); // burada da geri döndürmek için tersi dönüşüm yaptık
-
+        Brand brand = mapper.map(request,Brand.class);
+        brand.setId(0); // update olmaması için olabilir, CreateBrandResponse içinde id kısmı varsa karışmaması için, id sıfır versek de yeni oluşturuyor
+        // id veritababında var ise update işlemi yapıyor, yoksa add işlemi yapıyor, bu yüzde sıfır verdik
+        repository.save(brand);
+        CreateBrandResponse response = mapper.map(brand,CreateBrandResponse.class);
         return response;
 
     }
