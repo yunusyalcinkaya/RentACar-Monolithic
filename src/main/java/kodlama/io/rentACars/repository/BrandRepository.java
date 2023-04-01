@@ -9,4 +9,7 @@ public interface BrandRepository extends JpaRepository<Brand,Integer> {
     // kendimiz yazacaktık. (add(),update(),list(),delete() gibi metodları)
     // Custom queries yazacağız
 
+    // arka planda bu metod'un body'si var
+    boolean existsBooleanByNameIgnoreCase(String name);
+
 }

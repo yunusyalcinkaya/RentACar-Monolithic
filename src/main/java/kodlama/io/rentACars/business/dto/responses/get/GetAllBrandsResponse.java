@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.ParameterScriptAssert;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,4 +15,5 @@ import lombok.Setter;
 public class GetAllBrandsResponse {
     private int id;
     private String name;
+   // private List<GetAllModelsResponse> models;
 }

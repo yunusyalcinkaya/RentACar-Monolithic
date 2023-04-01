@@ -2,9 +2,11 @@ package kodlama.io.rentACars.api.controllers;
 
 import kodlama.io.rentACars.business.abstracts.BrandService;
 import kodlama.io.rentACars.business.dto.requests.create.CreateBrandRequest;
+import kodlama.io.rentACars.business.dto.requests.update.UpdateBrandRequest;
 import kodlama.io.rentACars.business.dto.responses.create.CreateBrandResponse;
 import kodlama.io.rentACars.business.dto.responses.get.GetAllBrandsResponse;
 import kodlama.io.rentACars.business.dto.responses.get.GetBrandResponse;
+import kodlama.io.rentACars.business.dto.responses.update.UpdateBrandResponse;
 import kodlama.io.rentACars.entities.Brand;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,7 +42,7 @@ public class BrandsController {
     }
 
     @PutMapping("/{id}")
-    public Brand update(@PathVariable int id, @RequestBody Brand brand){
+    public UpdateBrandResponse update(@PathVariable int id, @RequestBody UpdateBrandRequest brand){
         return service.update(id,brand);
     }
 
