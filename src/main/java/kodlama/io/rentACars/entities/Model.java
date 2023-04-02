@@ -22,7 +22,7 @@ public class Model {
     private String name;
 
     @ManyToOne // bir modelin bir markası olabilir, bir markanın birden çok modeli olabilir
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand_id") // foreign key
     private Brand brand; // aynı isim mappedBy da kullanılır
 
     @OneToMany(mappedBy = "model")

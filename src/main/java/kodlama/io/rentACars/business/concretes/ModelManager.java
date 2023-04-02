@@ -34,7 +34,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public GetModelResponse getById(int id) {
-        checkIdModelExistsById(id);
+        checkIfModelExistsById(id);
         Model model = repository.findById(id).orElseThrow();
         GetModelResponse response = mapper.map(model,GetModelResponse.class);
 
@@ -52,7 +52,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public UpdateModelResponse update(int id, UpdateModelRequest request) {
-        checkIdModelExistsById(id);
+        checkIfModelExistsById(id);
         Model model = mapper.map(request,Model.class);
         model.setId(id);
         repository.save(model);
@@ -62,16 +62,17 @@ public class ModelManager implements ModelService {
 
     @Override
     public void delete(int id) {
+        checkIfModelExistsById(id);
         repository.deleteById(id);
     }
 
     // Diğer kuralları da yaz
-    private void checkIdModelExistsById(int id){
+    private void checkIfModelExistsById(int id){
         if(!repository.existsById(id)){
             throw new RuntimeException("bu id'de bir model mevcut değil");
         }
     }
-    private void checkIdModelExistsByName(String name){
+    private void checkIfModelExistsByName(String name){
         if(!repository.existsByNameIgnoreCase(name)){
             throw new RuntimeException("bu isimde bir model mevcut değil");
         }
