@@ -48,8 +48,12 @@ public class MaintenanceManager implements MaintenanceService {
         Maintenance maintenance = mapper.map(request,Maintenance.class);
         maintenance.setId(0);
         Maintenance createdMaintenance = repository.save(maintenance);
-        Car car = carRepository.findById(createdMaintenance.getId()).orElseThrow();
+        Car car = carRepository.findById(createdMaintenance.getCar().getId()).orElseThrow();
+        System.out.println("--------------" + car.getId()+", "+car.getMaintenance());
         car.setState(State.MAINTENANCE);
+        System.out.println("--------------" + car.getId()+", "+car.getMaintenance());
+        System.out.println("--------------" + createdMaintenance.getCar().getMaintenance()+", "+createdMaintenance.getCar().getMaintenance());
+
         CreateMaintenanceResponse response = mapper.map(createdMaintenance, CreateMaintenanceResponse.class);
         return response;
     }
@@ -67,7 +71,8 @@ public class MaintenanceManager implements MaintenanceService {
     @Override
     public void delete(int id) {
         checkIfMaintenanceExistsById(id);
-        Car car = carRepository.findById(id).orElseThrow();
+        Maintenance maintenance = repository.findById(id).orElseThrow();
+        Car car = carRepository.findById(maintenance.getCar().getId()).orElseThrow();
         car.setState(State.AVAILABLE);
         repository.deleteById(id);
     }
@@ -78,8 +83,7 @@ public class MaintenanceManager implements MaintenanceService {
     }
 
     private  void checkCarState(int id){
-        Maintenance maintenance = repository.findById(id).orElseThrow();
-        Car car = carRepository.findById(maintenance.getId()).orElseThrow();
+        Car car = carRepository.findById(id).orElseThrow();
         if (car.getState() == State.MAINTENANCE)
             throw new RuntimeException("Car is alreadey in maintenance. carId: " + car.getId());
         if (car.getState() == State.RENTED)
