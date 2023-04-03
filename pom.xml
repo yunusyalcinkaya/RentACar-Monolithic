@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>kodlama.io</groupId>
-	<artifactId>rentACars</artifactId>
+	<artifactId>rentACar</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>rentACars</name>
 	<description>This a car rental system project</description>
