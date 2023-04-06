@@ -95,19 +95,20 @@ public class MaintenanceManager implements MaintenanceService {
 
     private void checkIfCarIsNotUnderMaintenance(int carId) {
         if (!repository.existsByCarIdAndIsCompletedIsFalse(carId)) {
-            throw new RuntimeException("Bakımda böyle bir araç bulunamadı!");
+            throw new RuntimeException("Car does not exists in maintenance. carId:" + carId);
         }
     }
 
     private void checkIfCarUnderMaintenance(CreateMaintenanceRequest request) {
         if (repository.existsByCarIdAndIsCompletedIsFalse(request.getCarId())) {
-            throw new RuntimeException("Araç şuanda bakımda!");
+            throw new RuntimeException("Car is already in car. carId:" + request.getCarId());
         }
     }
 
     private void checkCarAvailabilityForMaintenance(CreateMaintenanceRequest request) {
         if (carService.getById(request.getCarId()).getState().equals(State.RENTED)) {
-            throw new RuntimeException("Araç kirada olduğu için bakıma alınamaz!");
+            throw new RuntimeException("Car can not be taken into maintenance. Because car is rented. carId:"
+                    + request.getCarId());
         }
     }
 

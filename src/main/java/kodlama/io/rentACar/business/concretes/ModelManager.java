@@ -69,12 +69,12 @@ public class ModelManager implements ModelService {
     // Diğer kuralları da yaz
     private void checkIfModelExistsById(int id){
         if(!repository.existsById(id)){
-            throw new RuntimeException("bu id'de bir model mevcut değil");
+            throw new RuntimeException("Model does not exists. id:" + id);
         }
     }
     private void checkIfModelExistsByName(String name){
         if(!repository.existsByNameIgnoreCase(name)){
-            throw new RuntimeException("bu isimde bir model mevcut değil");
+            throw new RuntimeException("Model does not exists. name:" + name);
         }
     }
 }

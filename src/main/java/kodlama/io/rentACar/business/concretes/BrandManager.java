@@ -71,10 +71,10 @@ public class BrandManager  implements BrandService {
 
     //business rules
     private void checkIfBrandExists(int id){
-        if(!repository.existsById(id)) throw new RuntimeException("böyle bir marka mevcut değildir");
+        if(!repository.existsById(id)) throw new RuntimeException("Brand does not exists. id:" + id);
     }
     private void checkIfBrandExistsByName(String name){
         if(repository.existsBooleanByNameIgnoreCase(name))
-            throw new RuntimeException("Böyle bir marka sistemde kayıtlı!");
+            throw new RuntimeException("Brand is alredy exists. name:" + name);
     }
 }
