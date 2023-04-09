@@ -33,7 +33,7 @@ public class BrandManager  implements BrandService {
 
     @Override
     public GetBrandResponse getById(int id) {
-       checkIfBrandExists(id);
+       checkIfBrandExistsById(id);
        Brand brand = repository.findById(id).orElseThrow();
        GetBrandResponse response = mapper.map(brand,GetBrandResponse.class);
 
@@ -54,7 +54,7 @@ public class BrandManager  implements BrandService {
 
     @Override
     public UpdateBrandResponse update(int id, UpdateBrandRequest request) {
-        checkIfBrandExists(id);
+        checkIfBrandExistsById(id);
         Brand brand = mapper.map(request,Brand.class);
         brand.setId(id);
         repository.save(brand);
@@ -64,13 +64,13 @@ public class BrandManager  implements BrandService {
     }
 
     @Override
-    public void delete(int id) {
-        checkIfBrandExists(id);
+    public void deleteById(int id) {
+        checkIfBrandExistsById(id);
         repository.deleteById(id);
     }
 
     //business rules
-    private void checkIfBrandExists(int id){
+    private void checkIfBrandExistsById(int id){
         if(!repository.existsById(id)) throw new RuntimeException("Brand does not exists. id:" + id);
     }
     private void checkIfBrandExistsByName(String name){

@@ -63,7 +63,7 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         checkIfCarExistById(id);
         repository.deleteById(id);
     }

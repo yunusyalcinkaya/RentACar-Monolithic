@@ -43,7 +43,7 @@ public class ModelsController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT) //204
     public void delete(@PathVariable int id){
-        service.delete(id);
+        service.deleteById(id);
     }
 
 

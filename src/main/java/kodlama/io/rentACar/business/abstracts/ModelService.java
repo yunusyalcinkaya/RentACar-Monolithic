@@ -14,5 +14,5 @@ public interface ModelService {
     GetModelResponse getById(int id);
     CreateModelResponse add(CreateModelRequest request);
     UpdateModelResponse update(int id,UpdateModelRequest request);
-    void delete(int id);
+    void deleteById(int id);
 }

@@ -83,9 +83,18 @@ public class MaintenanceManager implements MaintenanceService {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         checkIfMaintenanceExistsById(id);
+        makeCarAvailableIfIsCompletedFalse(id);
         repository.deleteById(id);
+    }
+// eğer mevcut bakımdaki Car için Maintenance silinirse state= Available yap
+    // geçmiş kayıtlardan bir Maintenance silinirse birşey yapma
+    private void makeCarAvailableIfIsCompletedFalse(int id){
+        checkIfMaintenanceExistsById(id);
+        int carId = repository.findById(id).get().getCar().getId();
+        if (repository.existsByCarIdAndIsCompletedIsFalse(carId))
+            carService.changeState(carId,State.AVAILABLE);
     }
 
     private void checkIfMaintenanceExistsById(int id){

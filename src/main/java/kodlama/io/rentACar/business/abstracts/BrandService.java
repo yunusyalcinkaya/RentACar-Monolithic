@@ -15,6 +15,6 @@ public interface BrandService {
     GetBrandResponse getById(int id);
     CreateBrandResponse add(CreateBrandRequest request);
     UpdateBrandResponse update(int id, UpdateBrandRequest request);
-    void delete(int id);
+    void deleteById(int id);
 
 }

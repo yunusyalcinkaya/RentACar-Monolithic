@@ -14,6 +14,6 @@ public interface MaintenanceService {
     GetMaintenanceResponse getById(int id);
     CreateMaintenanceResponse add(CreateMaintenanceRequest request);
     UpdateMaintenanceResponse update(int id, UpdateMaintenanceRequest request);
-    void delete(int id);
+    void deleteById(int id);
     GetMaintenanceResponse returnCarFromMaintenance(int carId);// bakımdan çıkan
 }

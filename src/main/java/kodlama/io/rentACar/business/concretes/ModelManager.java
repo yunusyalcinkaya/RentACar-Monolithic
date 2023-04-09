@@ -43,6 +43,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public CreateModelResponse add(CreateModelRequest request) {
+        checkIfModelExistsByName(request.getName());
         Model model = mapper.map(request,Model.class);
         model.setId(0); // bunu eklemezsek brandId ile karışır
         repository.save(model);
@@ -61,7 +62,7 @@ public class ModelManager implements ModelService {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         checkIfModelExistsById(id);
         repository.deleteById(id);
     }
