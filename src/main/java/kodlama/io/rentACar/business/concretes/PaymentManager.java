@@ -84,19 +84,19 @@ public class PaymentManager implements PaymentService {
 
     private void checkIfPaymentExists(int id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Ödeme bilgisi bulunamadı.");
+            throw new RuntimeException("Payment can not found. id:" + id);
         }
     }
 
     private void checkIfBalanceIsEnough(double price, double balance) {
         if (balance < price) {
-            throw new RuntimeException("Yetersiz bakiye.");
+            throw new RuntimeException("Insufficient balance");
         }
     }
 
     private void checkIfCardExists(CreatePaymentRequest request) {
         if (repository.existsByCardNumber(request.getCardNumber())) {
-            throw new RuntimeException("Kart numarası zaten kayıtlı.");
+            throw new RuntimeException("The card number is already exists. cardNumber:" + request.getCardNumber());
         }
     }
 
