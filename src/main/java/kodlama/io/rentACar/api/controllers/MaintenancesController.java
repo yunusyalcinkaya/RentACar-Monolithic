@@ -25,7 +25,7 @@ public class MaintenancesController {
     }
 
     @GetMapping("/{id}")
-    public GetMaintenanceResponse getById(int id){
+    public GetMaintenanceResponse getById(@PathVariable int id){
         return service.getById(id);
     }
 

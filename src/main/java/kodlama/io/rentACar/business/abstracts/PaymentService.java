@@ -6,7 +6,7 @@ import kodlama.io.rentACar.business.dto.responses.create.CreatePaymentResponse;
 import kodlama.io.rentACar.business.dto.responses.get.GetAllPaymentsResponse;
 import kodlama.io.rentACar.business.dto.responses.get.GetPaymentResponse;
 import kodlama.io.rentACar.business.dto.responses.update.UpdatePaymentResponse;
-import kodlama.io.rentACar.core.dto.CreateRentalPaymentRequest;
+import kodlama.io.rentACar.common.dto.CreateRentalPaymentRequest;
 
 import java.util.List;
 
