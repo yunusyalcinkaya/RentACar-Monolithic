@@ -13,6 +13,6 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 public class CreateBrandRequest {
     @NotBlank
-    @Length(min = 2, message = "length must be greater than 2")
+    @Length(min = 2, message = "name length must be greater than 2")
     private String name;
 }
