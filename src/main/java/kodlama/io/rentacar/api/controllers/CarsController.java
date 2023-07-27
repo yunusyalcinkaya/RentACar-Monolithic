@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/cars")
+@CrossOrigin("http://localhost:3000")
 public class CarsController {
     private final CarService service;
 
@@ -47,3 +48,4 @@ public class CarsController {
         service.delete(id);
     }
 }
+

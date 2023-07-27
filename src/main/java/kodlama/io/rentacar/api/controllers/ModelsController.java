@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/models")
+@CrossOrigin("http://localhost:3000")
 public class ModelsController {
     private final ModelService service;
 

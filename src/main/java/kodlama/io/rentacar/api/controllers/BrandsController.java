@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/brands")
+@CrossOrigin("http://localhost:3000")
 public class BrandsController {
     private final BrandService service;
 

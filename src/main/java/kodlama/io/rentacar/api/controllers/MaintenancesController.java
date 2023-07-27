@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/maintenances")
+@CrossOrigin("http://localhost:3000")
 public class MaintenancesController {
     private final MaintenanceService service;
 
