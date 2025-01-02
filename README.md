@@ -2,7 +2,7 @@
 
 This project is a monolithic application developed to manage car rental operations. It is built using Spring Boot and communicates via RESTful APIs.
 
-### Used Technologies
+### Technologies Used
 
 - Spring Boot: Used for rapid and easy application development
 - Rest API: Facilitates data exchange between client and server
